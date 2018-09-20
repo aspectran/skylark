@@ -52,7 +52,7 @@
 <nav id="navigation" class="no-js">
     <div class="title-bar" data-responsive-toggle="gnb-menu" data-hide-for="large" style="display:none">
         <div class="title-bar-left">
-            <a class="logo" href="/terminal/" title="Aspectran"><img src="http://www.aspectran.com/assets/img/aspectran-icon.png" alt="Aspectran"/></a>
+            <a class="logo" href="/" title="Skylark"><img src="http://www.aspectran.com/assets/img/aspectran-icon.png" alt="Aspectran"/></a>
         </div>
         <div class="title-bar-center">
             <a href="#top-of-page">Skylark</a>
@@ -65,7 +65,7 @@
         <div class="row">
             <div class="top-bar-logo">
                 <div class="circle">
-                    <a class="logo" href="/" title="Aspectran"><img src="http://www.aspectran.com/assets/img/aspectran-icon.png" alt="Aspectran"/></a>
+                    <a class="logo" href="/" title="Skylark"><img src="http://www.aspectran.com/assets/img/aspectran-icon.png" alt="Aspectran"/></a>
                 </div>
             </div>
             <div class="top-bar-left">

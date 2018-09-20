@@ -11,6 +11,7 @@
     <append file="/WEB-INF/config/common-config.xml"/>
     <append file="/WEB-INF/config/web-config.xml"/>
     <append file="/WEB-INF/config/tts/tts.xml"/>
-    <append file="/WEB-INF/config/terminal/terminal.xml"/>
+    <append file="/WEB-INF/config/web/main.xml"/>
+    <append file="/WEB-INF/config/web/terminal.xml"/>
 
 </aspectran>
