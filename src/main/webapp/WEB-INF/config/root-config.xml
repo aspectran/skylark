@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 5.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-5.dtd">
+
+<aspectran>
+
+    <description>
+        This is the first configuration file that contains common settings.
+    </description>
+
+    <append file="/WEB-INF/config/common-config.xml"/>
+    <append file="/WEB-INF/config/web-config.xml"/>
+    <append file="/WEB-INF/config/tts/tts.xml"/>
+    <append file="/WEB-INF/config/terminal/terminal.xml"/>
+
+</aspectran>

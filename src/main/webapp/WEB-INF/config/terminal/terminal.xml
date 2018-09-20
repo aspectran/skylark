@@ -1,0 +1,26 @@
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 5.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-5.dtd">
+
+<aspectran>
+
+    <description>
+        Skylark is a text-to-speech web application.
+    </description>
+
+    <settings>
+        <setting name="transletNamePattern" value="/terminal/*"/>
+    </settings>
+
+    <translet name="/">
+        <dispatch name="templates/default">
+            <echo id="page">
+                <attributes>
+                    <item name="headline">Skylark Terminal</item>
+                    <item name="teaser">Skylark is a text to speech program that converts any written text into spoken words.</item>
+                    <item name="include">terminal/terminal</item>
+                </attributes>
+            </echo>
+        </dispatch>
+    </translet>
+
+</aspectran>

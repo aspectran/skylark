@@ -1,0 +1,99 @@
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 5.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-5.dtd">
+
+<aspectran>
+
+    <description>
+        An Aspectran configuration for Web Application Service.
+        Note that the name of the Translet corresponding to the request URI always starts with a forward slash (/).
+    </description>
+
+    <bean id="jspViewDispatcher" class="com.aspectran.web.support.view.JspViewDispatcher">
+        <description>
+            Register a JSP View Dispatcher.
+        </description>
+        <properties>
+            <item name="prefix">/WEB-INF/jsp/</item>
+            <item name="suffix">.jsp</item>
+        </properties>
+    </bean>
+
+    <aspect id="webTransletSettings">
+        <description>
+            Specifies the environment variables used during request and response processing.
+        </description>
+        <joinpoint target="translet"/>
+        <settings>
+            <setting name="characterEncoding" value="utf-8"/>
+            <setting name="contentEncoding" value="gzip"/>
+            <setting name="viewDispatcher" value="jspViewDispatcher"/>
+            <setting name="indentString" value="  "/>
+        </settings>
+    </aspect>
+
+    <bean id="corsProcessor" class="com.aspectran.web.support.cors.DefaultCorsProcessor">
+        <properties>
+            <item name="allowedOrigins" type="set">
+                <value>http://skylark.aspectran.com</value>
+                <value>http://localhost:8082</value>
+            </item>
+            <item name="allowedMethods" type="set">
+                <value>GET</value>
+                <value>POST</value>
+                <value>PATCH</value>
+                <value>PUT</value>
+                <value>DELETE</value>
+                <value>HEAD</value>
+                <value>OPTIONS</value>
+            </item>
+            <item name="maxAgeSeconds" value="360" valueType="int"/>
+            <item name="exposedHeaders" value="Location"/>
+        </properties>
+    </bean>
+
+    <aspect id="corsProcessorAspect">
+        <joinpoint target="translet">
+            methods: [
+                GET
+                POST
+                PATCH
+                PUT
+                DELETE
+            ]
+            headers: [
+                Origin
+            ]
+            pointcut: {
+                +: /**
+            }
+        </joinpoint>
+        <advice bean="corsProcessor">
+            <before>
+                <action method="processActualRequest"/>
+            </before>
+        </advice>
+        <exception>
+            <thrown type="com.aspectran.web.support.cors.CorsException">
+                <transform type="transform/text">
+                    <template engine="token">
+                        @{CORS.HTTP_STATUS_CODE}: @{CORS.HTTP_STATUS_TEXT}
+                    </template>
+                </transform>
+            </thrown>
+        </exception>
+    </aspect>
+
+    <translet name="/**" method="OPTIONS">
+        <action bean="corsProcessor" method="processPreflightRequest"/>
+        <exception>
+            <thrown type="com.aspectran.web.support.cors.CorsException">
+                <transform type="transform/text">
+                    <template engine="token">
+                        @{CORS.HTTP_STATUS_CODE}: @{CORS.HTTP_STATUS_TEXT}
+                    </template>
+                </transform>
+            </thrown>
+        </exception>
+    </translet>
+
+</aspectran>
