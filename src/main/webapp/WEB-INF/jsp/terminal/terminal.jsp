@@ -25,7 +25,7 @@
             if (command !== '') {
                 term.pause();
                 $.ajax({
-                    url: '/tts',
+                    url: '/api/v0/tts',
                     data: {
                         text: command
                     },

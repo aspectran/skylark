@@ -96,4 +96,7 @@
         </exception>
     </translet>
 
+    <append file="/WEB-INF/config/web/main.xml"/>
+    <append file="/WEB-INF/config/web/terminal.xml"/>
+
 </aspectran>

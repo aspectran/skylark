@@ -1,0 +1,28 @@
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 5.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-5.dtd">
+
+<aspectran>
+
+    <description>
+        TTS API V0
+    </description>
+
+    <settings>
+        <setting name="transletNamePattern" value="/api/v0/*"/>
+    </settings>
+
+    <bean id="ttsApiV0" class="com.aspectran.skylark.tts.TtsApiV0"/>
+
+    <translet name="/tts">
+        <request>
+            <parameters>
+                <item name="text" mandatory="true"/>
+            </parameters>
+        </request>
+        <action bean="ttsApiV0" method="tts"/>
+        <response>
+            <transform contentType="audio/wav;base64"/>
+        </response>
+    </translet>
+
+</aspectran>

@@ -4,11 +4,10 @@
 <aspectran>
 
     <description>
-        Skylark is a text-to-speech web application.
+        Skylark TTS Configuration
     </description>
 
-    <translet name="/">
-        <redirect path="/terminal"/>
-    </translet>
+    <append file="/WEB-INF/config/tts/voices.xml"/>
+    <append file="/WEB-INF/config/tts/api-v0.xml"/>
 
 </aspectran>
