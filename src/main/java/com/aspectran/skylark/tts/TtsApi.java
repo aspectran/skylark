@@ -8,4 +8,6 @@ public interface TtsApi {
 
     void tts(Translet translet) throws IOException;
 
+    void download(Translet translet) throws IOException;
+
 }

@@ -12,4 +12,10 @@ public class TtsApiV0 implements TtsApi {
         ttsBean.speak(translet);
     }
 
+    @Override
+    public void download(Translet translet) throws IOException {
+        TextToSpeechBean ttsBean = translet.getBean("voice-kevin16");
+        ttsBean.download(translet);
+    }
+
 }

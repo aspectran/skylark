@@ -32,6 +32,12 @@
             }
             web: {
                 uriDecoding: utf-8
+                exposals: {
+                    +: /
+                    +: /terminal
+                    +: /terminal/**
+                    +: /api/**
+                }
             }
         </param-value>
     </context-param>

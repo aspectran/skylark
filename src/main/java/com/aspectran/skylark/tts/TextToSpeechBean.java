@@ -146,17 +146,45 @@ public class TextToSpeechBean implements InitializableBean, DisposableBean {
      * @param text the text that will be transformed to speech
      * @param out the output stream of bytes
      */
-    public synchronized int speak(String text, OutputStream out) {
+    public int speak(String text, OutputStream out) {
+        return speak(text, out, null);
+    }
+
+    /**
+     * Sends synthesized sound data to an output stream of bytes.
+     *
+     * @param text the text that will be transformed to speech
+     * @param out the output stream of bytes
+     * @param transformer the transformer that encodes bytes into different types of data
+     */
+    public int speak(String text, OutputStream out, ByteStreamAudioPlayer.Transformer transformer) {
+        if (voice == null) {
+            throw new IllegalStateException("Cannot find a voice named " + voiceName);
+        }
+        ByteStreamAudioPlayer audioPlayer = new ByteStreamAudioPlayer(out);
+        if (transformer != null) {
+            audioPlayer.setTransformer(transformer);
+        }
+        speak(text, audioPlayer);
+        return audioPlayer.getTotalBytes();
+    }
+
+    /**
+     * Sends synthesized sound data to an output stream of bytes.
+     *
+     * @param text the text that will be transformed to speech
+     * @param audioPlayer the audio player
+     * @return the audio player
+     */
+    public synchronized AudioPlayer speak(String text, AudioPlayer audioPlayer) {
         if (voice == null) {
             throw new IllegalStateException("Cannot find a voice named " + voiceName);
         }
         AudioPlayer oldAudioPlayer = voice.getAudioPlayer();
-        ByteStreamAudioPlayer audioPlayer = new ByteStreamAudioPlayer(out);
-        audioPlayer.setTransformer(bytes -> Base64.getEncoder().encode(bytes));
         voice.setAudioPlayer(audioPlayer);
         voice.speak(text);
         voice.setAudioPlayer(oldAudioPlayer);
-        return audioPlayer.getTotalBytes();
+        return audioPlayer;
     }
 
     public void speak(Translet translet) throws IOException {
@@ -168,10 +196,21 @@ public class TextToSpeechBean implements InitializableBean, DisposableBean {
             translet.getResponseAdapter().setStatus(413);
             return;
         }
-        translet.getResponseAdapter().setHeader("Content-Type", "audio/wav");
         OutputStream out = translet.getResponseAdapter().getOutputStream();
         out.write(DATA_URI_PREFIX);
-        speak(text, out);
+        speak(text, out, bytes -> Base64.getEncoder().encode(bytes));
+    }
+
+    public void download(Translet translet) throws IOException {
+        String text = translet.getParameter("text");
+        if (text == null) {
+            return;
+        }
+        if (text.length() > MAX_TEXT_BYTES) {
+            translet.getResponseAdapter().setStatus(413);
+            return;
+        }
+        speak(text, translet.getResponseAdapter().getOutputStream());
     }
 
     public static void main(String[] args) {
