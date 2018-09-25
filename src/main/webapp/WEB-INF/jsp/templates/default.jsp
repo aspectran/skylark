@@ -52,7 +52,7 @@
 <nav id="navigation" class="no-js">
     <div class="title-bar" data-responsive-toggle="gnb-menu" data-hide-for="large" style="display:none">
         <div class="title-bar-left">
-            <a class="logo" href="/" title="Skylark"><img src="http://www.aspectran.com/assets/img/aspectran-icon.png" alt="Aspectran"/></a>
+            <a class="logo" href="/" title="Skylark"><img src="http://www.aspectran.com/assets/img/aspectran-site-logo.png" alt="Aspectran"/></a>
         </div>
         <div class="title-bar-center">
             <a href="#top-of-page">Skylark</a>
@@ -65,7 +65,7 @@
         <div class="row">
             <div class="top-bar-logo">
                 <div class="circle">
-                    <a class="logo" href="/" title="Skylark"><img src="http://www.aspectran.com/assets/img/aspectran-icon.png" alt="Aspectran"/></a>
+                    <a class="logo" href="/" title="Skylark"><img src="http://www.aspectran.com/assets/img/aspectran-site-logo.png" alt="Aspectran"/></a>
                 </div>
             </div>
             <div class="top-bar-left">
@@ -159,7 +159,7 @@
                 <p>© 2008–2018 The Aspectran Project. All rights reserved.</p>
             </section>
             <section id="subfooter-right" class="medium-6 columns social-icons">
-                <ul>
+                <ul style="float:right">
                     <li><a href="http://github.com/topframe" target="_blank" class="icon-github" title="Code and more ..."></a></li>
                     <li><a href="http://twitter.com/aspectran" target="_blank" class="icon-twitter" title="Always the latest news from aspectran there on Twitter"></a></li>
                     <li><a href="http://www.facebook.com/aspectran" target="_blank" class="icon-facebook" title="Let's be friends!"></a></li>
