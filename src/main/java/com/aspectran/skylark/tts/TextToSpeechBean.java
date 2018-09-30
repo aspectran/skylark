@@ -217,7 +217,7 @@ public class TextToSpeechBean implements InitializableBean, DisposableBean {
         TextToSpeechBean textToSpeechBean = new TextToSpeechBean();
         textToSpeechBean.setVoiceName("kevin16");
         textToSpeechBean.initialize();
-        textToSpeechBean.speak("test", System.out);
+        textToSpeechBean.speak("1234");
         textToSpeechBean.destroy();
     }
 
