@@ -11,8 +11,6 @@
         <setting name="transletNamePattern" value="/api/v0/*"/>
     </settings>
 
-    <bean id="ttsApiV0" class="com.aspectran.skylark.tts.TtsApiV0"/>
-
     <translet name="/tts">
         <request>
             <parameters>

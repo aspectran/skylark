@@ -16,6 +16,9 @@
                 encoding: utf-8
                 resources: [
                 ]
+                scan: [
+                    com.aspectran.skylark
+                ]
                 hybridLoad: false
                 autoReload: {
                     reloadMode: hard
