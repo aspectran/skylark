@@ -1,5 +1,5 @@
 <!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 5.0//EN"
-                           "http://aspectran.github.io/dtd/aspectran-5.dtd">
+        "http://aspectran.github.io/dtd/aspectran-5.dtd">
 
 <aspectran>
 
@@ -25,7 +25,6 @@
         <joinpoint target="translet"/>
         <settings>
             <setting name="characterEncoding" value="utf-8"/>
-            <setting name="contentEncoding" value="gzip"/>
             <setting name="viewDispatcher" value="jspViewDispatcher"/>
             <setting name="indentString" value="  "/>
         </settings>

@@ -146,8 +146,8 @@
     </div>
     <div class="row">
         <div class="large-12 columns">
-            <c:if test="${not empty page.include}">
-                <jsp:include page="/WEB-INF/jsp/${page.include}.jsp"/>
+            <c:if test="${not empty page.path}">
+                <jsp:include page="/WEB-INF/jsp/pages/${page.path}.jsp"/>
             </c:if>
         </div>
     </div>

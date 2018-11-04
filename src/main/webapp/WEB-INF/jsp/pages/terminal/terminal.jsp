@@ -29,7 +29,7 @@
                     data: {
                         text: command
                     },
-                    method: 'POST',
+                    method: 'GET',
                     dataType: 'text',
                     success: function(data) {
                         if (data) {
