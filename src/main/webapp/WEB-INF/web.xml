@@ -12,7 +12,7 @@
         <param-name>aspectran:config</param-name>
         <param-value>
             context: {
-                root: /WEB-INF/config/root-config.xml
+                root: /WEB-INF/config/app-config.xml
                 encoding: utf-8
                 resources: [
                 ]
@@ -47,6 +47,14 @@
     <listener>
         <listener-class>com.aspectran.web.startup.listener.AspectranServiceListener</listener-class>
     </listener>
+    <filter>
+        <filter-name>web-activity-filter</filter-name>
+        <filter-class>com.aspectran.web.startup.filter.WebActivityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>web-activity-filter</filter-name>
+        <servlet-name>web-activity-servlet</servlet-name>
+    </filter-mapping>
     <servlet>
         <servlet-name>web-activity-servlet</servlet-name>
         <servlet-class>com.aspectran.web.startup.servlet.WebActivityServlet</servlet-class>
