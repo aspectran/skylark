@@ -19,13 +19,13 @@
                 scan: [
                     com.aspectran.skylark
                 ]
+                profiles: {
+                }
                 hybridLoad: false
                 autoReload: {
                     reloadMode: hard
                     scanIntervalSeconds: 5
                     startup: false
-                }
-                profiles: {
                 }
             }
             scheduler: {
