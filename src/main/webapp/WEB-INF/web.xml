@@ -21,7 +21,6 @@
                 ]
                 profiles: {
                 }
-                hybridLoad: false
                 autoReload: {
                     reloadMode: hard
                     scanIntervalSeconds: 5
