@@ -8,16 +8,14 @@
     </description>
 
     <settings>
-        <setting name="transletNamePattern" value="/terminal/*"/>
+        <setting name="transletNamePrefix" value="/terminal/"/>
     </settings>
 
     <translet name="/">
         <echo id="page">
-            <attributes>
-                <item name="headline">Skylark Terminal</item>
-                <item name="teaser">Skylark is a text to speech program that converts any written text into spoken words.</item>
-                <item name="path">terminal/terminal</item>
-            </attributes>
+            <item name="headline">Skylark Terminal</item>
+            <item name="teaser">Skylark is a text to speech program that converts any written text into spoken words.</item>
+            <item name="path">terminal/terminal</item>
         </echo>
         <dispatch name="templates/default"/>
     </translet>
