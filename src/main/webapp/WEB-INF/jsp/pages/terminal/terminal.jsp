@@ -1,14 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<div class="row content">
+    <div class="columns t10 b10">
+        <div id="skylark-term"></div>
+    </div>
+</div>
 <style>
-    #skylark-term {
-        border-radius: 0 0 10px 10px;
+    body.plate .row.content {
+        padding: 0;
+        background-color: #000;
     }
-    @media print, screen and (min-width: 64em) {
-        section > .row {
-            background-color: #000;
-            border-radius: 0 0 10px 10px;
-        }
+    #skylark-term {
+        padding: 0;
     }
     .terminal-wrapper textarea {
         box-shadow: none;
@@ -16,7 +19,6 @@
         min-width: initial;
     }
 </style>
-<div id="skylark-term"></div>
 <script src="https://cdn.jsdelivr.net/gh/jcubic/jquery.terminal@devel/js/jquery.terminal.min.js"></script>
 <link href="https://cdn.jsdelivr.net/gh/jcubic/jquery.terminal@devel/css/jquery.terminal.min.css" rel="stylesheet"/>
 <script>
