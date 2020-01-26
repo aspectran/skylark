@@ -188,10 +188,10 @@
 </footer>
 <script src="https://aspectran.com/assets/js/foundation.min.js"></script>
 <script>
-    var path = location.pathname;
-    var a1 = $("#gnb-menu .top-bar-left .dropdown li a[href='" + path + "']").last();
+    const path = location.pathname;
+    const a1 = $("#gnb-menu .top-bar-left .dropdown li a[href='" + path + "']").last();
     if (a1.size() > 0) {
-        var arr = [];
+        let arr = [];
         arr.push({'name': a1.text(), 'href': null});
         a1.parentsUntil(".dropdown > li:eq(0)").each(function() {
             if ($(this).hasClass("menu")) {
@@ -202,8 +202,8 @@
             }
         });
         arr.reverse();
-        for (var i in arr) {
-            var item = arr[i];
+        for (let i in arr) {
+            let item = arr[i];
             if (i < arr.length - 1) {
                 $(".breadcrumbs").append("<li><a href='" + item.href + "'>" + item.name + "</a></li>");
             } else {
@@ -213,18 +213,18 @@
     }
     $(document).foundation();
     $(document).ready(function() {
-        var $win = $(window);
-        var $nav = $("#navigation");
-        var navHeight = $("#masthead").height() - $nav.height();
-        var lastScrollTop = 0;
-        var scrolled;
-        var navFixed;
+        let $win = $(window);
+        let $nav = $("#navigation");
+        let navHeight = $("#masthead").height() - $nav.height();
+        let lastScrollTop = 0;
+        let scrolled;
+        let navFixed;
         $win.scroll(function() {
             scrolled = true;
         });
         setInterval(function() {
             if (scrolled) {
-                var scrollTop = $win.scrollTop();
+                let scrollTop = $win.scrollTop();
                 if (Math.abs(lastScrollTop - scrollTop) <= 10) {
                     return;
                 }
@@ -259,9 +259,9 @@
 <script>
     $(document).ready(function() {
         $("#masthead h1, article h1, article h2, article h3, article h4, article h5, article h6").each(function(index, item) {
-            var tagn = item.localName;
-            var anchor = "top-of-page";
-            if(tagn != "h1") {
+            let tagn = item.localName;
+            let anchor = "top-of-page";
+            if (tagn !== "h1") {
                 anchor = "anchor-" + (index + 1);
                 $(this).before("<a class='toc-anchor " + anchor + "' id='" + anchor + "' name='" + anchor + "'></a>");
             }
@@ -272,39 +272,38 @@
 <script>
     $(document).ready(function() {
         $(".lazy-sticky").each(function() {
-            var $win = $(window);
-            var $this = $(this);
-            var topNavHeight = 60;
-            var upToTopHeight = $("#up-to-top").height() + 30 + 60;
-            var footerHeight = $("#footer-content").height() + upToTopHeight;
-            var baseOffsetTop = $this.offset().top - topNavHeight;
-            var offsetTop = 0;
-            var thisHeight = $this.height();
-            var winHeight = $win.height();
-            var scrollTimer = null;
-            var immediate = false;
+            const $win = $(window);
+            const $this = $(this);
+            const baseOffsetTop = $this.offset().top;
+            const upToTopHeight = $("#up-to-top").height() + 30 + 60;
+            let footerHeight = $("#footer-content").height() + upToTopHeight;
+            let offsetTop = 0;
+            let thisHeight = $this.height();
+            let winHeight = $win.height();
+            let scrollTimer = null;
+            let immediate = false;
             $this.find("#toc ul a").click(function(e) {
                 immediate = true;
-                var anchor = $(this).attr("anchor");
-                if(anchor != "top-of-page") {
+                let anchor = $(this).attr("anchor");
+                if (anchor !== "top-of-page") {
                     setTimeout(function() {
-                        var offset = $("#" + anchor).offset();
-                        if(offset) {
+                        let offset = $("#" + anchor).offset();
+                        if (offset) {
                             immediate = true;
-                            $win.scrollTop(offset.top - topNavHeight);
+                            $win.scrollTop(offset.top - $("#navigation.fixed .top-bar").height()||0);
                         }
-                    }, 100);
+                    }, 300);
                 }
             });
             $win.scroll(function() {
-                var scrollTop = $win.scrollTop();
-                if(scrollTop < baseOffsetTop) {
-                    if(scrollTimer) {
+                let scrollTop = $win.scrollTop();
+                if (scrollTop < baseOffsetTop) {
+                    if (scrollTimer) {
                         clearInterval(scrollTimer);
                         scrollTimer = null;
                     }
                     scrollTimer = setInterval(function() {
-                        if(offsetTop != 0) {
+                        if (offsetTop !== 0) {
                             $this.css({
                                 top: 0
                             });
@@ -315,22 +314,24 @@
                         immediate = false;
                     }, immediate ? 250 : 500);
                 } else {
-                    if(immediate || (scrollTop > baseOffsetTop + offsetTop + thisHeight - 20) || (scrollTop < baseOffsetTop + offsetTop)) {
-                        var tocOffsetLeftBase = $this.offset().left;
-                        if(tocOffsetLeftBase > 100) {
-                            if(scrollTimer) {
+                    let topBarHeight = $("#navigation.fixed .top-bar").height()||0;
+                    if (immediate || (scrollTop > baseOffsetTop + topBarHeight + offsetTop + thisHeight - 20) ||
+                        (scrollTop < baseOffsetTop + topBarHeight + offsetTop)) {
+                        if ($this.offset().left >= 15 && $this.width() < 500) {
+                            if (scrollTimer) {
                                 clearInterval(scrollTimer);
                                 scrollTimer = null;
                             }
                             scrollTimer = setInterval(function() {
+                                topBarHeight = $("#navigation.fixed .top-bar").height()||0;
                                 scrollTop = $win.scrollTop();
-                                if(scrollTop < baseOffsetTop) {
+                                if (scrollTop < baseOffsetTop + topBarHeight) {
                                     scrollTop = 0;
                                 } else {
-                                    scrollTop = scrollTop - baseOffsetTop + 10;
+                                    scrollTop = scrollTop - baseOffsetTop + topBarHeight + 30;
                                 }
-                                if(scrollTop > $(document).height() - footerHeight - thisHeight - baseOffsetTop - topNavHeight) {
-                                    scrollTop = $(document).height() - footerHeight - thisHeight - baseOffsetTop - topNavHeight;
+                                if (scrollTop > $(document).height() - footerHeight - thisHeight - baseOffsetTop + topBarHeight) {
+                                    scrollTop = $(document).height() - footerHeight - thisHeight - baseOffsetTop + topBarHeight;
                                 }
                                 offsetTop = scrollTop;
                                 $this.css({
@@ -351,8 +352,7 @@
                 }
             });
             $win.resize(function() {
-                var tocOffsetLeftBase = $this.offset().left;
-                if(tocOffsetLeftBase <= 100) {
+                if ($this.offset().left < 15 || $this.width() >= 500) {
                     clearInterval(scrollTimer);
                     $this.css("top", 0);
                 } else {
@@ -360,7 +360,7 @@
                 }
             });
             setTimeout(function() {
-                if($win.scrollTop() > baseOffsetTop) {
+                if ($win.scrollTop() > baseOffsetTop) {
                     offsetTop = $win.scrollTop();
                     $win.scroll();
                 }
@@ -373,7 +373,7 @@
     $.expr[':'].external = function(obj) {
         return !obj.href.match(/^javascript\:/)
             && !obj.href.match(/^mailto\:/)
-            && (obj.hostname != location.hostname);
+            && (obj.hostname !== location.hostname);
     };
     $(function(){
         /* Add 'external' CSS class to all external links */
@@ -382,11 +382,5 @@
         $(".external").attr('target','_blank');
     })
 </script>
-<script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false, multilanguagePage: true, gaTrack: true, gaId: 'UA-66807210-2'}, 'google_translate_element');
-    }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
