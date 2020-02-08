@@ -126,7 +126,7 @@
             <div class="cell">
                 <nav role="navigation" aria-label="You are here:">
                     <ul class="breadcrumbs" itemprop="breadcrumb">
-                        <li><a href="https://skylark.aspectran.com/">Skylark</a></li>
+                        <li><a href="https://aspectran.com/en/">Aspectran</a></li>
                         <li><a href="/">Demo</a></li>
                     </ul>
                 </nav>
