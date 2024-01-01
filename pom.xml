@@ -23,6 +23,7 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <url>https://bitbucket.org/aspectran/skylark</url>
+    <inceptionYear>2018</inceptionYear>
     <contributors>
         <contributor>
             <name>Juho Jeong</name>
