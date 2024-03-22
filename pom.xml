@@ -50,17 +50,16 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <debug>true</debug>
-                    <showDeprecation>true</showDeprecation>
-                    <showWarnings>true</showWarnings>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <compilerArgs>
                         <arg>-Xlint:-try,-path,-options</arg>
-                        <arg>-parameters</arg>
                     </compilerArgs>
-                    <meminitial>256m</meminitial>
-                    <maxmem>1024m</maxmem>
+                    <parameters>true</parameters>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
                     <excludes>
                         <exclude>**/package-info.java</exclude>
                     </excludes>
