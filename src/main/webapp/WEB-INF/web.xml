@@ -33,7 +33,7 @@
             }
             web: {
                 uriDecoding: utf-8
-                exposals: {
+                acceptables: {
                     +: /
                     +: /terminal
                     +: /terminal/**
